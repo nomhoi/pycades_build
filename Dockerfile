@@ -29,7 +29,7 @@ RUN set -ex; \
     cd /cprocsp; \
     unzip pycades.zip;
 
-# добавить установку переменной Python_INCLUDE_DIR
+COPY CMakeLists.txt /cprocsp/pycades_0.1.19595/CMakeLists.txt
 
 RUN set -ex; \
     cd /cprocsp/pycades_0.1.19595; \
