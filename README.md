@@ -6,5 +6,4 @@
 
 Запуск контейнера:
 
-    docker run -it --rm --name test pycades bash
-    # cd /cprocsp/pycades_0.1.19595/
+    docker run -v `pwd`/code:/code -it --rm --name pycades pycades bash 
