@@ -41,11 +41,6 @@ RUN set -ex; \
 RUN set -ex; \
     cp /cprocsp/pycades_0.1.19595/pycades.so /usr/local/lib/python3.8/pycades.so
 
-COPY ./ca-certificates /usr/local/share/ca-certificates
-
-RUN set -ex; \
-    update-ca-certificates
-
 RUN mkdir /code
 
 WORKDIR /code
