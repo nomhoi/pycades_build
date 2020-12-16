@@ -16,30 +16,18 @@ RUN set -ex; \
 
 COPY ./cprocsp /cprocsp
 
-RUN cd /cprocsp; \
+RUN set -ex; \
+    cd /cprocsp; \
     tar xvf linux-amd64_deb.tgz; \
     ./linux-amd64_deb/install.sh; \
     apt-get install ./linux-amd64_deb/lsb-cprocsp-devel_5.0.11944-6_all.deb
 
-RUN cd /cprocsp; \
+RUN set -ex; \
+    cd /cprocsp; \
     tar xvf cades_linux_amd64.tar.gz; \
     apt-get install ./cades_linux_amd64/cprocsp-pki-cades-64_2.0.14071-1_amd64.deb
 
-RUN set -ex; \
-    cd /cprocsp; \
-    unzip pycades.zip;
-
-COPY CMakeLists.txt /cprocsp/pycades_0.1.19595/CMakeLists.txt
-
-RUN set -ex; \
-    cd /cprocsp/pycades_0.1.19595; \
-    mkdir build; \
-    cd build; \
-    cmake ..; \
-    make -j4
-
-RUN set -ex; \
-    cp /cprocsp/pycades_0.1.19595/pycades.so /usr/local/lib/python3.8/pycades.so
+RUN pip install pycryptoprosdk
 
 RUN mkdir /code
 
