@@ -29,17 +29,17 @@ RUN set -ex; \
     cd /cprocsp; \
     unzip pycades.zip;
 
-COPY CMakeLists.txt /cprocsp/pycades_0.1.19595/CMakeLists.txt
+COPY CMakeLists.txt /cprocsp/pycades_0.1.19995/CMakeLists.txt
 
 RUN set -ex; \
-    cd /cprocsp/pycades_0.1.19595; \
+    cd /cprocsp/pycades_0.1.19995; \
     mkdir build; \
     cd build; \
     cmake ..; \
     make -j4
 
 RUN set -ex; \
-    cp /cprocsp/pycades_0.1.19595/pycades.so /usr/local/lib/python3.8/pycades.so
+    cp /cprocsp/pycades_0.1.19995/pycades.so /usr/local/lib/python3.8/pycades.so
 
 RUN mkdir /code
 
