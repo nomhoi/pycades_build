@@ -19,27 +19,29 @@ COPY ./cprocsp /cprocsp
 RUN cd /cprocsp; \
     tar xvf linux-amd64_deb.tgz; \
     ./linux-amd64_deb/install.sh; \
-    apt-get install ./linux-amd64_deb/lsb-cprocsp-devel_5.0.11944-6_all.deb
+    apt-get install ./linux-amd64_deb/lsb-cprocsp-devel_5.0.11455-5_all.deb
 
 RUN cd /cprocsp; \
     tar xvf cades_linux_amd64.tar.gz; \
-    apt-get install ./cades_linux_amd64/cprocsp-pki-cades-64_2.0.14071-1_amd64.deb
+    apt-get install ./cades_linux_amd64/cprocsp-pki-cades_2.0.0-1_amd64.deb
 
 RUN set -ex; \
     cd /cprocsp; \
     unzip pycades.zip;
 
-COPY CMakeLists.txt /cprocsp/pycades_0.1.19995/CMakeLists.txt
+ENV PYCADES="pycades_0.1.22769"
+
+COPY CMakeLists.txt /cprocsp/$PYCADES/CMakeLists.txt
 
 RUN set -ex; \
-    cd /cprocsp/pycades_0.1.19995; \
+    cd /cprocsp/$PYCADES; \
     mkdir build; \
     cd build; \
     cmake ..; \
     make -j4
 
 RUN set -ex; \
-    cp /cprocsp/pycades_0.1.19995/pycades.so /usr/local/lib/python3.8/pycades.so
+    cp /cprocsp/$PYCADES/pycades.so /usr/local/lib/python3.8/pycades.so
 
 RUN mkdir /code
 
